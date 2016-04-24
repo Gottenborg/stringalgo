@@ -35,8 +35,6 @@ class SuffixTree(object):
 
         n = len(self.string)
 
-        print "Construction has started!"
-
         for i in range(0, n):
             self.add(i, n-1)
 
@@ -62,7 +60,6 @@ class SuffixTree(object):
                 self.add_recrusion(node.right, i, n)
         else:
             if k>=node.label[1]:
-                print (i, n), (i+(node.label[1]-node.label[0])+1, n)
                 self.add_recrusion(node.left, i+(node.label[1]-node.label[0])+1, n)
             else:
                 self.correct(node, k, i, n)
@@ -74,7 +71,6 @@ class SuffixTree(object):
             return -1
 
         for i, j in zip(range(pair1[0], pair2[1]+1),range(pair2[0], pair2[1]+1)):
-            print i,j
             if self.string[i]!=self.string[j]:
                 return i
         return pair1[1]
@@ -89,9 +85,10 @@ class SuffixTree(object):
             j, m = node.label
             node.label = (j, k-1)
             node.left = Node((k, m), node.left, Node((i+(k-j), n)))
-    
+          
     def search(self, term):
         pass
+
 
 stree = SuffixTree("Mississippi")
 
@@ -186,3 +183,98 @@ print "Total memory usage of Mississippi: ", getTotalMemory(stree)
 stree = SuffixTree("Banana")
 
 print "Total memory usage of Banana: ", getTotalMemory(stree)
+
+
+class SuffixTree(object):
+
+    def __init__(self, string):
+        self.string = string+"$"
+        self.root = Node(None)
+        self.construct()
+
+    def __len__(self):
+        return len(self.string)
+
+    def __str__(self):
+        output = "\t Suffix Tree of " + self.string[:-1] + "\n"
+
+        return output
+
+    def construct(self):
+
+        n = len(self.string)
+
+        for i in range(0, n):
+            self.add(i, n-1)
+
+    ## Find the correct position to add the ending.
+    def add(self, i, n):
+
+        node = self.root
+
+        if node.left==None:
+            node.left = Node(self.storeInts(i, n))
+        else:
+            self.add_recrusion(node.left, i, n)
+
+    ## Recrusive add
+    def add_recrusion(self, node, i, n):
+
+        k = self.match(self.getInts(node.label), (i, n))
+
+        if k==-1:
+            if node.right==None:
+                node.right = Node(self.storeInts(i, n))
+            else:
+                self.add_recrusion(node.right, i, n)
+        else:
+            label = self.getInts(node.label)
+            if k>=label[1]:
+                self.add_recrusion(node.left, i+(label[1]-label[0])+1, n)
+            else:
+                self.correct(node, k, i, n)
+
+    # Find where they match or miss match.
+    def match(self, pair1, pair2):
+
+        if self.string[pair1[0]]!=self.string[pair2[0]]:
+            return -1
+
+        for i, j in zip(range(pair1[0], pair2[1]+1),range(pair2[0], pair2[1]+1)):
+            if self.string[i]!=self.string[j]:
+                return i
+        return pair1[1]
+
+    def correct(self, node, k, i, n):
+
+        if node.left==None:
+            j, n = self.getInts(node.label)
+            node.label = self.storeInts(j, k-1)
+            node.left = Node(self.storeInts(k, n), None, Node(self.storeInts(i+(k-j), n)))
+        else:
+            j, m = self.getInts(node.label)
+            node.label = self.storeInts(j, k-1)
+            node.left = Node(self.storeInts(k, m), node.left, Node(self.storeInts(i+(k-j), n)))
+
+    def storeInts(self, int1, int2):
+        return int1+int2*1000000
+    
+    def getInts(self, value):
+        int2 = value/1000000
+        return value-int2*1000000, int2
+    
+    def search(self, term):
+        pass
+
+
+print
+print "Storing 2 ints in one int, versus a tuple of 2 ints"
+    
+stree1 = SuffixTree("Mississippi")
+                                        
+print "Total memory usage of Mississippi: ", getTotalMemory(stree1)
+
+stree2 = SuffixTree("Banana")
+
+print "Total memory usage of Banana: ", getTotalMemory(stree2)
+
