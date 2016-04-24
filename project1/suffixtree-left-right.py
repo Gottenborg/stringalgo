@@ -43,12 +43,7 @@ class SuffixTree(object):
     ## Find the correct position to add the ending.
     def add(self, i, n):
 
-        print
-        print "Going to add: ", self.string[i:n+1]
-
         node = self.root
-
-        print node
 
         if node.left==None:
             node.left = Node((i, n))
@@ -60,16 +55,9 @@ class SuffixTree(object):
 
         k = self.match(node.label, (i, n))
 
-        print "-"*10
-        print node
-        print k
-
         if k==-1:
             if node.right==None:
                 node.right = Node((i, n))
-                print "-"*10
-                print "Added:"
-                print node.right
             else:
                 self.add_recrusion(node.right, i, n)
         else:
@@ -97,22 +85,10 @@ class SuffixTree(object):
             j, n = node.label
             node.label = (j, k-1)
             node.left = Node((k, n), None, Node((i+(k-j), n)))
-            print "-"*10
-            print node
-            print "-"*10
-            print "Added:"
-            print node.left
         else:
             j, m = node.label
             node.label = (j, k-1)
-            print "Note with a child being corrected"
             node.left = Node((k, m), node.left, Node((i+(k-j), n)))
-            print "-"*10
-            print node
-            print "-"*10
-            print "Added:"
-            print node.left
-
     
     def search(self, term):
         pass
@@ -175,3 +151,38 @@ scanallnodes(stree.root)
 
 print
 print stree.search("ss")
+
+
+from sys import getsizeof
+
+print "Object itself:", getsizeof(stree)
+print "Root:", getsizeof(stree.root)
+print "Root label:", getsizeof(stree.root.label)
+print "Root child:", getsizeof(stree.root.left)
+print "First child label:", getsizeof(stree.root.left.label)
+
+def getTotalMemory(ST):
+    
+    if ST is None: return getsizeof(ST)
+    
+    if type(ST)==SuffixTree:
+        totalmemory = getsizeof(ST)+getsizeof(ST.root)+getsizeof(ST.root.label)+getsizeof(ST.root.left)+getsizeof(ST.root.right)
+        node = ST.root.left
+    else:
+        totalmemory = 0
+        node = ST
+
+    while node is not None:
+        totalmemory += getsizeof(node.label)+getsizeof(node.left)+getsizeof(node.right)
+
+        totalmemory += getTotalMemory(node.left)
+        
+        node = node.right
+    
+    return totalmemory
+
+print "Total memory usage of Mississippi: ", getTotalMemory(stree)
+
+stree = SuffixTree("Banana")
+
+print "Total memory usage of Banana: ", getTotalMemory(stree)
