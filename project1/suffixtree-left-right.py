@@ -178,12 +178,25 @@ def getTotalMemory(ST):
     
     return totalmemory
 
+def timeIt(code, iterations=4, toprint=True):
+    from time import time
+    st = time()
+    if iterations>6: raise("Node: iterations is 10 to power of iterations.")
+    for i in range(10**iterations):
+        exec code
+    thetime = time()-st
+    if(toprint==True): print("----- It took %.5f seconds to run: %s with %d iterations -----" %
+          (thetime, code, 10**iterations))
+    return thetime
+
 print "Total memory usage of Mississippi: ", getTotalMemory(stree)
 
 stree = SuffixTree("Banana")
 
 print "Total memory usage of Banana: ", getTotalMemory(stree)
 
+timeIt("SuffixTree('Mississippi')", 3)
+timeIt("SuffixTree('Banana')", 3)
 
 class SuffixTree(object):
 
@@ -266,7 +279,6 @@ class SuffixTree(object):
     def search(self, term):
         pass
 
-
 print
 print "Storing 2 ints in one int, versus a tuple of 2 ints"
     
@@ -278,3 +290,5 @@ stree2 = SuffixTree("Banana")
 
 print "Total memory usage of Banana: ", getTotalMemory(stree2)
 
+timeIt("SuffixTree('Mississippi')", 3)
+timeIt("SuffixTree('Banana')", 3)
