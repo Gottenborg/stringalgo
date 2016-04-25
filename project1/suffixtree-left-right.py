@@ -319,6 +319,7 @@ class SuffixTree(object):
                 #if the current label has a child, go to that child. Else, we are done and the search term was not found
                 if current_node.left != None:
                     current_node = current_node.left
+                    continue
                 else:
                     return None
 
