@@ -85,10 +85,9 @@ class SuffixTree(object):
             j, m = node.label
             node.label = (j, k-1)
             node.left = Node((k, m), node.left, Node((i+(k-j), n)))
-          
+    
     def search(self, term):
         pass
-
 
 stree = SuffixTree("Mississippi")
 
@@ -147,7 +146,7 @@ def scanallnodes(node):
 scanallnodes(stree.root)
 
 print
-print stree.search("ss")
+#print stree.search("ss")
 
 
 from sys import getsizeof
@@ -188,6 +187,14 @@ def timeIt(code, iterations=4, toprint=True):
     if(toprint==True): print("----- It took %.5f seconds to run: %s with %d iterations -----" %
           (thetime, code, 10**iterations))
     return thetime
+
+def find_leaves(node, leaf_list):
+
+    if node != None:
+        if node.left == None:
+            leaf_list.append(node.label)
+        find_leaves(node.left, leaf_list)
+        find_leaves(node.right, leaf_list)
 
 print "Total memory usage of Mississippi: ", getTotalMemory(stree)
 
@@ -275,9 +282,55 @@ class SuffixTree(object):
     def getInts(self, value):
         int2 = value/1000000
         return value-int2*1000000, int2
-    
+
+
     def search(self, term):
-        pass
+
+        current_node = self.root.left
+        matches = []
+        i = 0
+        j = 0
+        while current_node.label != None and current_node.left != None or current_node.right != None:
+
+            ints = self.getInts(current_node.label)
+            string = self.string[ints[0]:ints[1]+1]
+            print "current node:"
+            print string
+
+            #While no mismatch in the current node is found continue through the node
+            while i < len(term) and i-j < len(string) and term[i] == string[i-j]:
+                i += 1
+                print i
+
+            #if the search term is depleted
+            if i == len(term):
+                #find all leaf nodes from this node
+                find_leaves(current_node.left, matches)
+                for k in xrange(len(matches)):
+                    matches[k] = self.getInts(matches[k])
+                if len(matches) == 0:
+                    matches.append(self.getInts(current_node.label))
+                return matches
+
+            #if the label is depleted
+            if i-j == len(string):
+                j = i
+
+                #if the current label has a child, go to that child. Else, we are done and the search term was not found
+                if current_node.left != None:
+                    current_node = current_node.left
+                else:
+                    return None
+
+
+
+            #if a mismatch is found go to a sibling and try there, if no sibling: Search term is not in the tree
+            if term[i] != string[i-j]:
+                if current_node.right != None:
+                    current_node = current_node.right
+                else:
+                    return None
+
 
 print
 print "Storing 2 ints in one int, versus a tuple of 2 ints"
