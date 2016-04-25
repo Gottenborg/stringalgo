@@ -1,3 +1,5 @@
+import sys
+
 class Node:
     def __init__(self, label, left=None, right=None):
         self.label = label
@@ -99,6 +101,15 @@ class SuffixTree(object):
     def nodeInterval(self, interval):
         return interval[1]-interval[0]+1
 
+    def find_leaves(self, node, leaf_list):
+
+        if node != None:
+            if node.left == None:
+                leaf_list.append(node.label)
+            self.find_leaves(node.left, leaf_list)
+            self.find_leaves(node.right, leaf_list)
+   
+
     def search(self, term):
         
         current_node = self.root.left
@@ -109,13 +120,10 @@ class SuffixTree(object):
             
             ints = self.getInts(current_node.label)
             string = self.string[ints[0]:ints[1]+1]
-            print "current node:"
-            print string
             
             #While no mismatch in the current node is found continue through the node
             while i < len(term) and i-j < len(string) and term[i] == string[i-j]:
                 i += 1
-                print i
                 
             #if the search term is depleted
             if i == len(term):
@@ -134,6 +142,7 @@ class SuffixTree(object):
                 #if the current label has a child, go to that child. Else, we are done and the search term was not found
                 if current_node.left != None:
                     current_node = current_node.left
+                    continue
                 else:
                     return None
                 
@@ -144,14 +153,7 @@ class SuffixTree(object):
                 else:
                     return None
 
-    def find_leaves(node, leaf_list):
-
-        if node != None:
-            if node.left == None:
-                leaf_list.append(node.label)
-            find_leaves(node.left, leaf_list)
-            find_leaves(node.right, leaf_list)
-    
+ 
 def scanallnodes(node):
     if node==None: return None
     print node
@@ -190,3 +192,16 @@ def timeIt(code, iterations=4, toprint=True):
     if(toprint==True): print("----- It took %.5f seconds to run: %s with %d iterations -----" %
           (thetime, code, 10**iterations))
     return thetime
+
+
+def stringreader(filename):
+    with open(filename) as f:
+        string = f.read()
+    return string
+
+
+if __name__ == "__main__":
+    file = stringreader(sys.argv[1])
+    stree = SuffixTree(file)
+
+    print stree.search(sys.argv[2])
