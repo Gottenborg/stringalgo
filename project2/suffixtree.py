@@ -207,9 +207,9 @@ class SuffixTree(object):
                 else:
                     return None
 
-    def left_rotate(self, b, l):
+    def left_rotate(self, b, l, t):
         c = 0
-        while b-(l*2)>0 and self.string[b]==self.string[b-(l*2)]:
+        while b-(l*t)>0 and self.string[b]==self.string[b-(l*t)]:
             c += 1
             b -= 1
         return c
