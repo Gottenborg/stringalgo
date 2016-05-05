@@ -31,6 +31,7 @@ class SuffixTree(object):
         self.string = string+"$"
         self.root = Node(None)
         self.construct()
+        self.i = 0
 
     def __len__(self):
         return len(self.string)
@@ -183,6 +184,23 @@ class SuffixTree(object):
             c += 1
             b -= 1
         return c
+
+    def dfs(self, node, table):
+        if node != None:
+            if node.left == None:
+                print node.index
+                table[node.index] = self.i
+                print table
+
+                self.i += 1
+        if node.left != None:
+            self.dfs(node.left, table)
+
+        if node.right != None:
+            self.dfs(node.right, table)
+
+        
+
         
          
 def scanallnodes(node):
