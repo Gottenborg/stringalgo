@@ -1,26 +1,28 @@
 import sys
 
 class Node:
-    def __init__(self, label, left=None, right=None, parent = None):
+    def __init__(self, label, left=None, right=None, parent = None, index = None):
         self.label = label
         self.left = left
         self.right = right
         self.parent = parent
+        self.index = index
 
     def __str__(self):
-        output = "Node with label: %r \n" % (self.label,)
+        output = "Node with label: %r \n" % (self.label)
         if self.left==None:
             output += "No child | "
         else:
-            output += "Child with label: %r | " % (self.left.label,)
+            output += "Child with label: %r | " % (self.left.label)
         if self.right==None:
             output += "No sibling | "
         else:
-            output += "Sibling with label: %r | " % (self.right.label,)
+            output += "Sibling with label: %r | " % (self.right.label)
         if self.parent== None:
             output += "no parent "
         else:
-            output+= "parent with label: %r" % (self.parent.label)
+            output+= "parent with label: %r | " % (self.parent.label)
+        output += "index: %r" % (self.index)
         return output
 
 class SuffixTree(object):
@@ -42,36 +44,44 @@ class SuffixTree(object):
 
         n = len(self.string)
 
+        c = 0
+
         for i in range(0, n):
-            self.add(i, n-1)
+            self.add(i, n-1, c)
+            c += 1
         self.fix_parents(self.root)
+    
     ## Find the correct position to add the ending.
-    def add(self, i, n):
+    def add(self, i, n, c):
 
         node = self.root
 
         if node.left==None:
-            node.left = Node(self.storeInts(i, n), parent = node)
+            node.left = Node(self.storeInts(i, n), parent = node, index = c)
         else:
-            self.add_recrusion(node.left, i, n)
+            self.add_recrusion(node.left, i, n, c)
 
     ## Recrusive add
-    def add_recrusion(self, node, i, n):
+    def add_recrusion(self, node, i, n, c):
 
         k = self.match(self.getInts(node.label), (i, n))
 
         if k==-1:
             if node.right==None:
-                node.right = Node(self.storeInts(i, n), parent = node.parent)
-
+                node.right = Node(self.storeInts(i, n), parent = node.parent, index=c)
+                print
+                print node
+                print node.right
+                print
+                
             else:
-                self.add_recrusion(node.right, i, n)
+                self.add_recrusion(node.right, i, n, c)
         else:
             label = self.getInts(node.label)
             if k>=label[1]:
-                self.add_recrusion(node.left, i+(label[1]-label[0])+1, n)
+                self.add_recrusion(node.left, i+(label[1]-label[0])+1, n, c)
             else:
-                self.correct(node, k, i, n)
+                self.correct(node, k, i, n, c)
 
     # Find where they match or miss match.
     def match(self, pair1, pair2):
@@ -86,14 +96,15 @@ class SuffixTree(object):
                 return i
         return pair1[1]
 
-    def correct(self, node, k, i, n):
+    def correct(self, node, k, i, n, c):
 
         if node.left==None:
-            j, n = self.getInts(node.label)
+            j, m = self.getInts(node.label)
             node.label = self.storeInts(j, k-1)
             if node.right != None:
                 node.right.parent = node.parent
-            node.left = Node(self.storeInts(k, n), None, Node(self.storeInts(i+(k-j), n),parent = node), parent = node)
+            node.left = Node(self.storeInts(k, m), None, Node(self.storeInts(i+(k-j), n), parent = node, index = node.index), parent = node, index = c)
+            node.index = None
 
         else:
             j, m = self.getInts(node.label)
@@ -101,7 +112,8 @@ class SuffixTree(object):
             node.left.parent = node
             if node.right != None:
                 node.right.parent = node.parent
-            node.left = Node(self.storeInts(k, m), node.left, Node(self.storeInts(i+(k-j), n),parent = node), parent = node)
+            node.left = Node(self.storeInts(k, m), node.left, Node(self.storeInts(i+(k-j), n), parent = node, index = node.index), parent = node, index = c)
+            node.index = None
 
 
     def storeInts(self, int1, int2):
@@ -247,3 +259,6 @@ if __name__ == "__main__":
     stree = SuffixTree(file)
 
     print stree.search(sys.argv[2])
+
+scanallnodes(stree.root)
+
