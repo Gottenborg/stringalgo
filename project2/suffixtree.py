@@ -207,6 +207,15 @@ class SuffixTree(object):
                 else:
                     return None
 
+    def left_rotate(self, b, l):
+        c = 0
+        while b-(l*2)>0 and self.string[b]==self.string[b-(l*2)]:
+            c += 1
+            b -= 1
+        return c
+        
+        
+
  
 def scanallnodes(node):
     if node==None: return None
