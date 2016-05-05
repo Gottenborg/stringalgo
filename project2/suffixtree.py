@@ -177,7 +177,21 @@ class SuffixTree(object):
                     current_node = current_node.right
                 else:
                     return None
-                        
+
+    def dfs(self, node, table):
+        if node != None:
+            if node.left == None:
+                print node.index
+                table[self.i] = node.index
+                print table
+
+                self.i += 1
+        if node.left != None:
+            self.dfs(node.left, table)
+
+        if node.right != None:
+            self.dfs(node.right, table)
+
     def left_rotate(self, b, l, t):
         c = 0
         while b-(l*t)>0 and self.string[b]==self.string[b-(l*t)]:
@@ -254,4 +268,7 @@ if __name__ == "__main__":
     stree = SuffixTree(file)
 
     print stree.search(sys.argv[2])
+    thetable = [0] * len(stree.string)
+    stree.dfs(stree.root, thetable)
+    print thetable
 
