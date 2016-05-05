@@ -68,12 +68,7 @@ class SuffixTree(object):
 
         if k==-1:
             if node.right==None:
-                node.right = Node(self.storeInts(i, n), parent = node.parent, index=c)
-                print
-                print node
-                print node.right
-                print
-                
+                node.right = Node(self.storeInts(i, n), parent = node.parent, index=c)          
             else:
                 self.add_recrusion(node.right, i, n, c)
         else:
@@ -103,7 +98,7 @@ class SuffixTree(object):
             node.label = self.storeInts(j, k-1)
             if node.right != None:
                 node.right.parent = node.parent
-            node.left = Node(self.storeInts(k, m), None, Node(self.storeInts(i+(k-j), n), parent = node, index = node.index), parent = node, index = c)
+            node.left = Node(self.storeInts(k, m), None, Node(self.storeInts(i+(k-j), n), parent = node, index = c), parent = node, index = node.index)
             node.index = None
 
         else:
@@ -112,9 +107,8 @@ class SuffixTree(object):
             node.left.parent = node
             if node.right != None:
                 node.right.parent = node.parent
-            node.left = Node(self.storeInts(k, m), node.left, Node(self.storeInts(i+(k-j), n), parent = node, index = node.index), parent = node, index = c)
+            node.left = Node(self.storeInts(k, m), node.left, Node(self.storeInts(i+(k-j), n), parent = node, index = c), parent = node, index = node.index)
             node.index = None
-
 
     def storeInts(self, int1, int2):
         return int1+int2*1000000
@@ -131,22 +125,6 @@ class SuffixTree(object):
             self.find_leaves(node.left, leaf_list)
             self.find_leaves(node.right, leaf_list)
 
-    def length_of_node(self, node, length_list, length = 0):
-        if node != None and node.label != None:
-            ints = self.getInts(node.label)
-            length = length + (ints[1] - ints[0])+1
-            if node.parent != None:
-                self.length_of_node(node.parent, length_list, length)
-        if node.parent == None:
-            if node.label == None:
-                length_list.append(length)
-                return length
-
-            ints = self.getInts(node.label)
-            length = length + (ints[1] - ints[0])
-            length_list.append(length)
-            return length
-
     def fix_parents(self, node):
         if node != None and node.left != None:
             node.left.parent = node
@@ -156,10 +134,8 @@ class SuffixTree(object):
             self.fix_parents(node.right)
 
     def search(self, term):
-        
         current_node = self.root.left
         matches = []
-        length_list = []
         match_indexes = []
         i = 0
         j = 0
@@ -176,19 +152,13 @@ class SuffixTree(object):
             if i == len(term):
                 #find all leaf nodes from this node
                 self.find_leaves(current_node.left, matches)
-                for k in xrange(len(matches)):
-                    #Get the length of the suffixes ending in the leaves
-                    self.length_of_node(matches[k], length_list)
-                    matches[k] = self.getInts(matches[k].label)
-                    match_indexes.append(len(self.string) - length_list[k])
                 if len(matches) == 0:
-                    matches.append(current_node)
-                    self.length_of_node(matches[0], length_list)
-                    match_indexes.append(len(self.string) - length_list[0])
-                    matches[0] = self.getInts(current_node.label)
-
+                    match_indexes = current_node.index 
+                for k in matches:
+                    match_indexes.append(k.index)
+                    
                 return match_indexes
-            
+
             #if the label is depleted
             if i-j == len(string):
                 j = i
@@ -199,14 +169,14 @@ class SuffixTree(object):
                     continue
                 else:
                     return None
-                
+
             #if a mismatch is found go to a sibling and try there, if no sibling: Search term is not in the tree
             if term[i] != string[i-j]:
                 if current_node.right != None:
                     current_node = current_node.right
                 else:
                     return None
-
+                        
     def left_rotate(self, b, l, t):
         c = 0
         while b-(l*t)>0 and self.string[b]==self.string[b-(l*t)]:
@@ -214,9 +184,7 @@ class SuffixTree(object):
             b -= 1
         return c
         
-        
-
- 
+         
 def scanallnodes(node):
     if node==None: return None
     print node
@@ -268,6 +236,4 @@ if __name__ == "__main__":
     stree = SuffixTree(file)
 
     print stree.search(sys.argv[2])
-
-scanallnodes(stree.root)
 
