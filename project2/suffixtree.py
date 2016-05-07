@@ -1,4 +1,5 @@
 import sys
+import heapq
 
 class Node:
     def __init__(self, label, left=None, right=None, parent = None, index = None, dr = None):
@@ -27,12 +28,28 @@ class Node:
         output += "depth range: %r " % (self.dr, ) 
         return output
 
+class PriorityQueue:
+    
+    def __init__(self):
+        self._queue = []
+
+    # insert priority to -priority can change to max priority queue
+    def push(self, item, priority):
+        heapq.heappush(self._queue, (-priority, item))
+
+    def pop(self):
+        return heapq.heappop(self._queue)[1]
+
+    def __str__(self):
+        return str(self._queue)
+    
 class SuffixTree(object):
 
     def __init__(self, string):
         self.string = string+"$"
         self.root = Node(None)
         self.construct()
+        self.table = [0]*len(self.string)
 
     def __len__(self):
         return len(self.string)
@@ -179,25 +196,79 @@ class SuffixTree(object):
                 else:
                     return None
 
+    def length_of_node(self, node, length = 0):
+        if node != None and node.label != None:
+            ints = self.getInts(node.label)
+            length = length + (ints[1] - ints[0])+1
+            if node.parent != None:
+                self.length_of_node(node.parent, length)
+        if node.parent == None:
+            if node.label == None:
+                return length
+
+            ints = self.getInts(node.label)
+            length = length + (ints[1] - ints[0])
+            return length
+                
     def dfs(self, node, table, s, i):
         if node.left == None:
-            print node.index
             table[i] = node.index
-            print table
             i += 1
             
         if node.left != None:
             ns, i = self.dfs(node.left, table, s, i)
-            node.dr = (s, i) 
-            print node.dr
-
+            node.dr = self.storeInts(s, i)
+            
         if node.right != None:
             s, i = self.dfs(node.right, table, i, i)
-
+            
         return s, i
+    
+    def getLL(self, dr):
+        return self.table[dr[0]:dr[1]]
 
+    def collectLLs(self, node):
+
+        Q = PriorityQueue()
+
+        node = node.left
+        
+        while node!=None:
+            if node.dr!=None:
+                l, r = self.getInts(node.dr) 
+                Q.push(self.getLL((l, r)), (r-l))
+            node = node.right
+            
+        return [Q.pop()]+[i[1] for i in Q._queue] #Find a way
+    
     def find_tandem_repeats(self):
-        pass
+        self.dfs(self.root, self.table, 0, 0)
+        bp = []
+        S = self.string
+
+        node = self.root.left
+        
+        #Traversing the tree for the internal nodes.
+        while node!=None:
+
+            nl = self.length_of_node(node)
+            LL = self.getLL(self.getInts(node.dr))
+            LLs = self.collectLLs(node) # First element is large and the remaing is small (LL'(v))
+
+            for j in LLs[1:]:
+                for i in j:
+                    if i+nl in LL:
+                        if S[i]!=S[i+2*nl]:
+                            bp.append(i)
+                    if i-nl in LL:
+                        if S[i]!=S[i-2*nl]:
+                            bp.append(i)
+
+            #Need to make the traversal through the tree.
+            
+            return bp
+
+        return len(bp), 
     
     def left_rotate(self, b, l, t):
         c = 0
@@ -258,11 +329,10 @@ if __name__ == "__main__":
 
     print stree.search(sys.argv[2])
     thetable = [0] * len(stree.string)
-    l = [0]
     stree.dfs(stree.root, thetable, 0, 0)
     print thetable
-    print l
-    scanallnodes(stree.root)
+    #scanallnodes(stree.root)
+    print stree.find_tandem_repeats()
 
 
 
