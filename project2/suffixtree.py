@@ -1,13 +1,13 @@
 import sys
 
 class Node:
-    def __init__(self, label, left=None, right=None, parent = None, index = None):
+    def __init__(self, label, left=None, right=None, parent = None, index = None, dr = None):
         self.label = label
         self.left = left
         self.right = right
         self.parent = parent
         self.index = index
-        self.dfinterval = [None,None]
+        self.dr = dr
 
     def __str__(self):
         output = "Node with label: %r \n" % (self.label)
@@ -23,7 +23,8 @@ class Node:
             output += "no parent "
         else:
             output+= "parent with label: %r | " % (self.parent.label)
-        output += "index: %r" % (self.index)
+        output += "index: %r | " % (self.index)
+        output += "depth range: %r " % (self.dr, ) 
         return output
 
 class SuffixTree(object):
@@ -32,8 +33,6 @@ class SuffixTree(object):
         self.string = string+"$"
         self.root = Node(None)
         self.construct()
-        self.i = 0
-        self.depth_first_table = [0]*len(string+"$")
 
     def __len__(self):
         return len(self.string)
@@ -180,65 +179,32 @@ class SuffixTree(object):
                 else:
                     return None
 
+    def dfs(self, node, table, s, i):
+        if node.left == None:
+            print node.index
+            table[i] = node.index
+            print table
+            i += 1
+            
+        if node.left != None:
+            ns, i = self.dfs(node.left, table, s, i)
+            node.dr = (s, i) 
+            print node.dr
+
+        if node.right != None:
+            s, i = self.dfs(node.right, table, i, i)
+
+        return s, i
+
+    def find_tandem_repeats(self):
+        pass
+    
     def left_rotate(self, b, l, t):
         c = 0
         while b-(l*t)>0 and self.string[b]==self.string[b-(l*t)]:
             c += 1
             b -= 1
         return c
-
-    def dfs(self, node, table):
-        if node != None:
-            if node.left == None:
-                table[node.index] = self.i
-
-                self.i += 1
-        if node.left != None:
-            self.dfs(node.left, table)
-
-        if node.right != None:
-            self.dfs(node.right, table)
-
-    def add_dfIntervals(self):
-        self.i = 0
-        list_of_leaves = []
-        self.find_leaves(self.root, list_of_leaves)
-        self.dfs(self.root, self.depth_first_table)
-        table = self.depth_first_table
-        j = 0
-        while j <  len(list_of_leaves):
-            node = list_of_leaves[j]
-            if node != None and node.parent != None and node.label != None:
-                if list_of_leaves[j].parent not in list_of_leaves:
-                    list_of_leaves.append(list_of_leaves[j].parent)
-                #check if the current node is a leaf
-                if node.left == None:
-                    print node.index
-                    print table.index(node.index)
-                    #check if the leaf index is smaller than the smallest of the parent interval or larger than the largest 
-                    # OR if the parent interval doesn't exist
-                    if table.index(node.index) < node.parent.dfinterval[0] or node.parent.dfinterval[0] == None:
-                        #the smallest of the interval is now the leaf index
-                        node.parent.dfinterval[0] = table.index(node.index)
-                    #Do the same but for the larger interval
-                    if table.index(node.index) > node.parent.dfinterval[1] or node.parent.dfinterval[1] == None:
-                        node.parent.dfinterval[1] = table.index(node.index)
-                    print node.parent.dfinterval
-                    j += 1
-                else:
-                    #Now we are at an internal nodes
-                    #Check if the smallest of the interval is smaller than the current interval of the parent
-                    if node.dfinterval[0] < node.parent.dfinterval[0] or node.parent.dfinterval[0] == None:
-                        node.parent.dfinterval[0] = node.dfinterval[0]
-                    if node.dfinterval[1] > node.parent.dfinterval[1] or node.parent.dfinterval[1] == None:
-                        node.parent.dfinterval[1] = node.dfinterval[1]
-                    j += 1
-                    print node.parent.dfinterval
-
-            else:
-                j += 1
-        return None
-
 
 def scanallnodes(node):
     if node==None: return None
@@ -292,6 +258,23 @@ if __name__ == "__main__":
 
     print stree.search(sys.argv[2])
     thetable = [0] * len(stree.string)
-    stree.dfs(stree.root, thetable)
+    l = [0]
+    stree.dfs(stree.root, thetable, 0, 0)
     print thetable
+    print l
+    scanallnodes(stree.root)
 
+
+
+# Quick debugging tool. 
+# print
+# print
+# tests = "misssissippi"
+# sterm = 's'
+# testt = SuffixTree(tests)
+
+# scanallnodes(testt.root)
+
+# print
+# print tests, sterm
+# print testt.search(sterm)
