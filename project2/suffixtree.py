@@ -27,21 +27,6 @@ class Node:
         output += "index: %r | " % (self.index)
         output += "depth range: %r " % (self.dr, ) 
         return output
-
-class PriorityQueue:
-    
-    def __init__(self):
-        self._queue = []
-
-    # insert priority to -priority can change to max priority queue
-    def push(self, item, priority):
-        heapq.heappush(self._queue, (-priority, item))
-
-    def pop(self):
-        return heapq.heappop(self._queue)[1]
-
-    def __str__(self):
-        return str(self._queue)
     
 class SuffixTree(object):
 
@@ -229,17 +214,49 @@ class SuffixTree(object):
 
     def collectLLs(self, node):
 
-        Q = PriorityQueue()
-
+        LLs = []
         node = node.left
         
         while node!=None:
             if node.dr!=None:
                 l, r = self.getInts(node.dr) 
-                Q.push(self.getLL((l, r)), (r-l))
+                LLs.append(self.getLL((l, r)))
             node = node.right
             
-        return [Q.pop()]+[i[1] for i in Q._queue] #Find a way
+        return sorted(LLs, key=len, reverse=True)
+
+    def crawl(self, node, bp, S, oD):
+
+        print node
+        
+        if node.left==None:
+            if node.right!=None:
+                self.crawl(node.right, bp, S, oD)
+                return 0
+            else:
+                return 0
+        
+        l, r = self.getInts(node.label)
+        D = r-l+oD
+        LL = self.getLL(self.getInts(node.dr))
+        LLs = self.collectLLs(node) # First element is large and the remaining is small (LL'(v))
+        
+        print LLs
+        
+        for j in LLs[1:]:
+            for i in j:
+                print LL, i+D
+                if i+D in LL:
+                    if S[i]!=S[i+2*D]:
+                        bp.append(i)
+                if i-D in LL:
+                    if S[i]!=S[i-2*D]:
+                        bp.append(i)
+
+        print bp
+        if node.left!=None and node.left.right!=None: self.crawl(node.left, bp, S, D)
+        if node.right!=None: self.crawl(node.right, bp, S, oD)
+        
     
     def find_tandem_repeats(self):
         self.dfs(self.root, self.table, 0, 0)
@@ -247,28 +264,12 @@ class SuffixTree(object):
         S = self.string
 
         node = self.root.left
+
+        self.crawl(node, bp, S, 0)
+
+        print bp
         
-        #Traversing the tree for the internal nodes.
-        while node!=None:
-
-            nl = self.length_of_node(node)
-            LL = self.getLL(self.getInts(node.dr))
-            LLs = self.collectLLs(node) # First element is large and the remaing is small (LL'(v))
-
-            for j in LLs[1:]:
-                for i in j:
-                    if i+nl in LL:
-                        if S[i]!=S[i+2*nl]:
-                            bp.append(i)
-                    if i-nl in LL:
-                        if S[i]!=S[i-2*nl]:
-                            bp.append(i)
-
-            #Need to make the traversal through the tree.
-            
-            return bp
-
-        return len(bp), 
+        return len(bp)
     
     def left_rotate(self, b, l, t):
         c = 0
