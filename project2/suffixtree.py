@@ -253,7 +253,7 @@ class SuffixTree(object):
                         print S[i], S[i+2*D]
                         bp.add((i, D))
                 if i-D in LL:
-                    if S[i]!=S[i-2*D]:
+                    if S[i-D]!=S[i-D]:
                         print S[i], S[i-2*D]
                         bp.add((i-D, D))
 
