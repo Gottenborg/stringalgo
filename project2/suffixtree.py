@@ -25,9 +25,9 @@ class Node:
         else:
             output+= "parent with label: %r | " % (self.parent.label)
         output += "index: %r | " % (self.index)
-        output += "depth range: %r " % (self.dr, ) 
+        output += "depth range: %r " % (self.dr, )
         return output
-    
+
 class SuffixTree(object):
 
     def __init__(self, string):
@@ -54,7 +54,7 @@ class SuffixTree(object):
             self.add(i, n-1, c)
             c += 1
         self.fix_parents(self.root)
-    
+
     ## Find the correct position to add the ending.
     def add(self, i, n, c):
 
@@ -72,7 +72,7 @@ class SuffixTree(object):
 
         if k==-1:
             if node.right==None:
-                node.right = Node(self.storeInts(i, n), parent = node.parent, index=c)          
+                node.right = Node(self.storeInts(i, n), parent = node.parent, index=c)
             else:
                 self.add_recrusion(node.right, i, n, c)
         else:
@@ -116,7 +116,7 @@ class SuffixTree(object):
 
     def storeInts(self, int1, int2):
         return int1+int2*1000000
-    
+
     def getInts(self, value):
         int2 = value/1000000
         return value-int2*1000000, int2
@@ -144,23 +144,23 @@ class SuffixTree(object):
         i = 0
         j = 0
         while current_node.label != None:
-            
+
             ints = self.getInts(current_node.label)
             string = self.string[ints[0]:ints[1]+1]
 
             #While no mismatch in the current node is found continue through the node
             while i < len(term) and i-j < len(string) and term[i] == string[i-j]:
                 i += 1
-                
+
             #if the search term is depleted
             if i == len(term):
                 #find all leaf nodes from this node
                 self.find_leaves(current_node.left, matches)
                 if len(matches) == 0:
-                    match_indexes = current_node.index 
+                    match_indexes = current_node.index
                 for k in matches:
                     match_indexes.append(k.index)
-                    
+
                 return match_indexes
 
             #if the label is depleted
@@ -194,21 +194,21 @@ class SuffixTree(object):
             ints = self.getInts(node.label)
             length = length + (ints[1] - ints[0])
             return length
-                
+
     def dfs(self, node, table, s, i):
         if node.left == None:
             table[i] = node.index
             i += 1
-            
+
         if node.left != None:
             ns, i = self.dfs(node.left, table, s, i)
             node.dr = self.storeInts(s, i)
-            
+
         if node.right != None:
             s, i = self.dfs(node.right, table, i, i)
-            
+
         return s, i
-    
+
     def getLL(self, dr):
         return self.table[dr[0]:dr[1]]
 
@@ -216,51 +216,57 @@ class SuffixTree(object):
 
         LLs = []
         node = node.left
-        
+
         while node!=None:
             if node.dr!=None:
-                l, r = self.getInts(node.dr) 
+                l, r = self.getInts(node.dr)
                 LLs.append(self.getLL((l, r)))
             node = node.right
-            
+
         return sorted(LLs, key=len, reverse=True)
 
     def crawl(self, node, bp, S, oD):
 
         print node
-        
+
         if node.left==None:
             if node.right!=None:
                 self.crawl(node.right, bp, S, oD)
                 return 0
-            else:
-                return 0
-        
+            else: return 0
+
         l, r = self.getInts(node.label)
-        D = r-l+oD
+        print "Depth:", r-l, oD, r-l+oD+1
+        D = r-l+oD+1
         LL = self.getLL(self.getInts(node.dr))
         LLs = self.collectLLs(node) # First element is large and the remaining is small (LL'(v))
-        
-        print LLs
-        
-        for j in LLs[1:]:
+
+        if LLs==[]: LLs = [LL]
+        elif len(LLs)>=2: LLs = LLs[1:]
+        print LL, LLs
+
+        for j in LLs:
             for i in j:
-                print LL, i+D
+                print j, LL, i, D, i+D
                 if i+D in LL:
                     if S[i]!=S[i+2*D]:
-                        bp.append(i)
+                        print S[i], S[i+2*D]
+                        bp.add((i, D))
                 if i-D in LL:
                     if S[i]!=S[i-2*D]:
-                        bp.append(i)
+                        print S[i], S[i-2*D]
+                        bp.add((i-D, D))
 
         print bp
-        if node.left!=None and node.left.right!=None: self.crawl(node.left, bp, S, D)
-        if node.right!=None: self.crawl(node.right, bp, S, oD)
-        
-    
+        if node.left.dr!=None:
+            self.crawl(node.left, bp, S, D)
+        if node.right!=None and node.right.dr!=None:
+            self.crawl(node.right, bp, S, oD)
+
+
     def find_tandem_repeats(self):
         self.dfs(self.root, self.table, 0, 0)
-        bp = []
+        bp = set()
         S = self.string
 
         node = self.root.left
@@ -268,10 +274,23 @@ class SuffixTree(object):
         self.crawl(node, bp, S, 0)
 
         print bp
-        
-        return len(bp)
-    
-    def left_rotate(self, b, l, t):
+
+        ln = 0
+
+        for b, l in bp:
+            ln += self.left_rotate(b, l, 2)
+            print self.left_rotate(b, l, 2), (b, l, 2)
+
+        return len(bp), ln
+
+    def left_rotate(self, i, l, t):
+        c = 0
+        while i>0 and self.string[i-1]==self.string[i+(l*t)-1]:
+            c += 1
+            i -= 1
+        return c
+
+    def left_rotate2(self, b, l, t):
         c = 0
         while b-(l*t)>0 and self.string[b]==self.string[b-(l*t)]:
             c += 1
@@ -283,13 +302,13 @@ def scanallnodes(node):
     print node
     scanallnodes(node.left)
     scanallnodes(node.right)
-   
+
 def getTotalMemory(ST):
 
     from sys import getsizeof
-    
+
     if ST is None: return getsizeof(ST)
-    
+
     if type(ST)==SuffixTree:
         totalmemory = getsizeof(ST)+getsizeof(ST.root)+getsizeof(ST.root.label)+getsizeof(ST.root.left)+getsizeof(ST.root.right)
         node = ST.root.left
@@ -301,9 +320,9 @@ def getTotalMemory(ST):
         totalmemory += getsizeof(node.label)+getsizeof(node.left)+getsizeof(node.right)
 
         totalmemory += getTotalMemory(node.left)
-        
+
         node = node.right
-    
+
     return totalmemory
 
 def timeIt(code, iterations=4, toprint=True):
@@ -331,16 +350,16 @@ if __name__ == "__main__":
     print stree.search(sys.argv[2])
     thetable = [0] * len(stree.string)
     stree.dfs(stree.root, thetable, 0, 0)
-    print thetable
+    #print thetable
     #scanallnodes(stree.root)
     print stree.find_tandem_repeats()
 
 
 
-# Quick debugging tool. 
+# Quick debugging tool.
 # print
 # print
-# tests = "misssissippi"
+# tests = "mississississippi"
 # sterm = 's'
 # testt = SuffixTree(tests)
 
@@ -349,3 +368,4 @@ if __name__ == "__main__":
 # print
 # print tests, sterm
 # print testt.search(sterm)
+# print testt.find_tandem_repeats()
