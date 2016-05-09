@@ -253,7 +253,7 @@ class SuffixTree(object):
                         #print S[i], S[i+2*D]
                         bp.add((i, D))
                 if i-D in LL:
-                    if S[i-D]!=S[i-D]:
+                    if S[i-D]!=S[i+D]:
                         #print S[i], S[i-2*D]
                         bp.add((i-D, D))
 
@@ -294,7 +294,7 @@ class SuffixTree(object):
 
         points = [("%r " % (i[0],)) + i[1] for i in points]
 
-        return points
+        return len(bp), ln
 
         #return len(bp), ln
 
@@ -366,8 +366,9 @@ if __name__ == "__main__":
     thetable = [0] * len(stree.string)
     stree.dfs(stree.root, thetable, 0, 0)
     #print thetable
-    #scanallnodes(stree.root)
     print stree.find_tandem_repeats()
+    #print stree.table
+    #scanallnodes(stree.root)
 
 
 
