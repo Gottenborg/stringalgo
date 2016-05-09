@@ -212,92 +212,107 @@ class SuffixTree(object):
     def getLL(self, dr):
         return self.table[dr[0]:dr[1]]
 
-    def collectLLs(self, node):
+    def collectLLs(self, node, LL):
 
         LLs = []
         node = node.left
 
+        # Traverse the siblings
         while node!=None:
+            # Check whether the node has range
             if node.dr!=None:
+                # Collect the leaf list
                 l, r = self.getInts(node.dr)
                 LLs.append(self.getLL((l, r)))
+            else:
+                # If leaf append index instead.
+                if node.index in LL:
+                    LLs.append([node.index])
             node = node.right
 
         return sorted(LLs, key=len, reverse=True)
 
     def crawl(self, node, bp, S, oD):
 
-        #print node
-
+        # If reached None for some reason, then stop.
+        if node==None: return 0
+        
+        # If the node as no child, then it is a leaf, and should not be run.
         if node.left==None:
+            # Checking whether there is a sibling (might not be a leaf)
             if node.right!=None:
                 self.crawl(node.right, bp, S, oD)
                 return 0
             else: return 0
 
+        # Calculating a new leaf distance
         l, r = self.getInts(node.label)
-        #print "Depth:", r-l, oD, r-l+oD+1
         D = r-l+oD+1
+        # Collecting the Leaf lists
         LL = self.getLL(self.getInts(node.dr))
-        LLs = self.collectLLs(node) # First element is large and the remaining is small (LL'(v))
+        LLs = self.collectLLs(node, LL) # First element is large and the remaining is small (LL'(v))
 
-        if LLs==[]: LLs = [LL]
-        elif len(LLs)>=2: LLs = LLs[1:]
-        #print LL, LLs
+        # Assigning 
+        large = LLs[0]
+        small = LLs[1:]
 
-        for j in LLs:
+        # Looping through the entries in small
+        for j in small:
             for i in j:
-                #print j, LL, i, D, i+D
+                # Test 1
                 if i+D in LL:
                     if S[i]!=S[i+2*D]:
-                        #print S[i], S[i+2*D]
                         bp.add((i, D))
-                if i-D in LL:
+                #Test 2
+                if i-D in large:
                     if S[i-D]!=S[i+D]:
-                        #print S[i], S[i-2*D]
                         bp.add((i-D, D))
 
-        #print bp
-        if node.left.dr!=None:
-            self.crawl(node.left, bp, S, D)
-        if node.right!=None and node.right.dr!=None:
-            self.crawl(node.right, bp, S, oD)
+        # Traverse first to a child then to a sibling.
+        self.crawl(node.left, bp, S, D)
+        self.crawl(node.right, bp, S, oD)
 
 
-    def find_tandem_repeats(self):
+    def find_tandem_repeats(self, printing=True, output=False):
+        # Annotate the tree with depth first 
         self.dfs(self.root, self.table, 0, 0)
         bp = set()
         S = self.string
 
         node = self.root.left
 
+        # Initilize the algorithm
         self.crawl(node, bp, S, 0)
 
-        bp = sorted(list(bp), key = lambda x: x[0])
+        if printing==True: bp = sorted(list(bp), key = lambda x: x[0])
 
         ln = 0
 
-        points = []
+        if printing==True: points = []
 
+        # Find all non-branching points
         for b, l in bp:
             ln += self.left_rotate(b, l, 2)
             nb = self.left_rotate(b, l, 2)
-            points.append(((b, l, 2), "branching"))
-            for i in xrange(1, nb+1):
-                points.append(((b-i, l, 2), "non-branching"))
+            if printing==True: points.append(((b, l, 2), "branching"))
+            if printing==True:
+                for i in xrange(1, nb+1):
+                    points.append(((b-i, l, 2), "non-branching"))
 
-        points = sorted(points, key = lambda x: x[0][1])
-        points = sorted(points, key = lambda x: x[0][0])
+        if printing==True: points = sorted(points, key = lambda x: x[0][1])
+        if printing==True: points = sorted(points, key = lambda x: x[0][0])
 
-        for i, j in points:
-            print i, j
+        if printing==True: 
+            for i, j in points:
+                print "(%i,%i,%i)" % i, j
 
-        points = [("%r " % (i[0],)) + i[1] for i in points]
+        if printing==True: points = [("(%i,%i,%i) " % (i[0])) + i[1] for i in points]
+
+        if printing==True and output==True: return (len(bp), ln), points
 
         return len(bp), ln
 
-        #return len(bp), ln
-
+    # Find the number of non-branching points, for a branching point.
     def left_rotate(self, i, l, t):
         c = 0
         while i>0 and self.string[i-1]==self.string[i+(l*t)-1]:
@@ -369,19 +384,19 @@ if __name__ == "__main__":
     print stree.find_tandem_repeats()
     #print stree.table
     #scanallnodes(stree.root)
-
+    timeIt("stree.find_tandem_repeats(False)", 0)
 
 
 # Quick debugging tool.
-# print
-# print
-# tests = "mississississippi"
-# sterm = 's'
-# testt = SuffixTree(tests)
+#print
+#print
+tests = "abaababaabaab"
+sterm = 'aba'
+testt = SuffixTree(tests)
 
 # scanallnodes(testt.root)
 
-# print
-# print tests, sterm
-# print testt.search(sterm)
-# print testt.find_tandem_repeats()
+#print
+#print tests, sterm
+#print testt.search(sterm)
+#print testt.find_tandem_repeats()
