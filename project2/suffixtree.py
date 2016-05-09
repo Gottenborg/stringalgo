@@ -227,7 +227,7 @@ class SuffixTree(object):
 
     def crawl(self, node, bp, S, oD):
 
-        print node
+        #print node
 
         if node.left==None:
             if node.right!=None:
@@ -236,28 +236,28 @@ class SuffixTree(object):
             else: return 0
 
         l, r = self.getInts(node.label)
-        print "Depth:", r-l, oD, r-l+oD+1
+        #print "Depth:", r-l, oD, r-l+oD+1
         D = r-l+oD+1
         LL = self.getLL(self.getInts(node.dr))
         LLs = self.collectLLs(node) # First element is large and the remaining is small (LL'(v))
 
         if LLs==[]: LLs = [LL]
         elif len(LLs)>=2: LLs = LLs[1:]
-        print LL, LLs
+        #print LL, LLs
 
         for j in LLs:
             for i in j:
-                print j, LL, i, D, i+D
+                #print j, LL, i, D, i+D
                 if i+D in LL:
                     if S[i]!=S[i+2*D]:
-                        print S[i], S[i+2*D]
+                        #print S[i], S[i+2*D]
                         bp.add((i, D))
                 if i-D in LL:
                     if S[i-D]!=S[i-D]:
-                        print S[i], S[i-2*D]
+                        #print S[i], S[i-2*D]
                         bp.add((i-D, D))
 
-        print bp
+        #print bp
         if node.left.dr!=None:
             self.crawl(node.left, bp, S, D)
         if node.right!=None and node.right.dr!=None:
@@ -273,15 +273,30 @@ class SuffixTree(object):
 
         self.crawl(node, bp, S, 0)
 
-        print bp
+        bp = sorted(list(bp), key = lambda x: x[0])
 
         ln = 0
 
+        points = []
+
         for b, l in bp:
             ln += self.left_rotate(b, l, 2)
-            print self.left_rotate(b, l, 2), (b, l, 2)
+            nb = self.left_rotate(b, l, 2)
+            points.append(((b, l, 2), "branching"))
+            for i in xrange(1, nb+1):
+                points.append(((b-i, l, 2), "non-branching"))
 
-        return len(bp), ln
+        points = sorted(points, key = lambda x: x[0][1])
+        points = sorted(points, key = lambda x: x[0][0])
+
+        for i, j in points:
+            print i, j
+
+        points = [("%r " % (i[0],)) + i[1] for i in points]
+
+        return points
+
+        #return len(bp), ln
 
     def left_rotate(self, i, l, t):
         c = 0
