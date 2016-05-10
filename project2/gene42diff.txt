@@ -1,0 +1,1306 @@
+5d4
+< (11,1,2) branching
+10,11c9,10
+< (18,1,2) branching
+< (21,1,2) branching
+---
+> (18,2,2) non-branching
+> (19,2,2) branching
+16,17c15
+< (33,1,2) branching
+< (36,1,2) non-branching
+---
+> (31,2,2) branching
+19d16
+< (37,1,2) non-branching
+21,22c18
+< (38,1,2) non-branching
+< (39,1,2) branching
+---
+> (38,2,2) branching
+24d19
+< (43,1,2) non-branching
+26,28c21,22
+< (44,1,2) non-branching
+< (45,1,2) branching
+< (54,1,2) branching
+---
+> (44,2,2) branching
+> (52,2,2) branching
+35d28
+< (67,1,2) branching
+37,39c30
+< (74,1,2) non-branching
+< (75,1,2) branching
+< (82,1,2) non-branching
+---
+> (76,2,2) branching
+41d31
+< (83,1,2) non-branching
+43,46c33
+< (84,1,2) non-branching
+< (85,1,2) branching
+< (88,1,2) non-branching
+< (89,1,2) branching
+---
+> (88,2,2) branching
+54c41
+< (102,1,2) branching
+---
+> (103,2,2) branching
+57d43
+< (111,1,2) non-branching
+59,60c45,46
+< (112,1,2) non-branching
+< (113,1,2) branching
+---
+> (111,3,2) branching
+> (114,2,2) branching
+63d48
+< (121,1,2) branching
+66,67c51
+< (126,1,2) non-branching
+< (127,1,2) branching
+---
+> (128,2,2) branching
+79a64
+> (144,4,2) branching
+83c68,70
+< (159,1,2) branching
+---
+> (160,2,2) non-branching
+> (161,2,2) non-branching
+> (162,2,2) branching
+107d93
+< (217,1,2) branching
+109,110c95
+< (230,1,2) non-branching
+< (231,1,2) branching
+---
+> (232,2,2) branching
+113d97
+< (238,1,2) non-branching
+115,116c99,100
+< (239,1,2) non-branching
+< (240,1,2) branching
+---
+> (239,2,2) branching
+> (246,2,2) branching
+118a103
+> (251,3,2) branching
+123a109
+> (262,2,2) branching
+125c111
+< (264,1,2) branching
+---
+> (265,2,2) branching
+131d116
+< (278,1,2) branching
+134c119,122
+< (293,1,2) branching
+---
+> (286,4,2) non-branching
+> (287,4,2) non-branching
+> (288,4,2) non-branching
+> (289,4,2) branching
+142,143d129
+< (313,1,2) non-branching
+< (314,1,2) branching
+146,147c132
+< (326,1,2) branching
+< (332,1,2) branching
+---
+> (324,2,2) branching
+149d133
+< (336,1,2) non-branching
+151,153c135,137
+< (337,1,2) non-branching
+< (338,1,2) branching
+< (341,1,2) branching
+---
+> (337,2,2) non-branching
+> (338,2,2) non-branching
+> (339,2,2) branching
+157,160c141,142
+< (348,1,2) non-branching
+< (349,1,2) branching
+< (354,1,2) branching
+< (359,1,2) branching
+---
+> (348,2,2) branching
+> (357,2,2) branching
+164d145
+< (366,1,2) branching
+166d146
+< (374,1,2) branching
+168,170d147
+< (378,2,2) non-branching
+< (379,2,2) non-branching
+< (380,2,2) branching
+175c152
+< (394,1,2) branching
+---
+> (395,2,2) branching
+178c155,157
+< (403,1,2) branching
+---
+> (401,2,2) branching
+> (401,3,2) branching
+> (404,2,2) branching
+196,198c175,179
+< (432,1,2) branching
+< (435,1,2) non-branching
+< (436,1,2) branching
+---
+> (432,2,2) non-branching
+> (432,4,2) branching
+> (433,2,2) non-branching
+> (434,2,2) non-branching
+> (435,2,2) branching
+200,207c181,185
+< (443,1,2) non-branching
+< (443,5,2) branching
+< (444,1,2) branching
+< (448,1,2) non-branching
+< (449,1,2) branching
+< (453,3,2) branching
+< (454,1,2) branching
+< (457,1,2) non-branching
+---
+> (442,2,2) non-branching
+> (443,2,2) branching
+> (448,2,2) branching
+> (454,3,2) non-branching
+> (455,3,2) branching
+209,210c187
+< (458,1,2) non-branching
+< (459,1,2) branching
+---
+> (458,2,2) branching
+215,216d191
+< (472,1,2) non-branching
+< (473,1,2) branching
+223d197
+< (490,1,2) branching
+224a199
+> (491,4,2) branching
+228d202
+< (495,1,2) branching
+231a206
+> (500,2,2) branching
+234,235c209
+< (509,1,2) non-branching
+< (510,1,2) branching
+---
+> (509,2,2) branching
+237,238c211,212
+< (515,1,2) non-branching
+< (516,1,2) branching
+---
+> (514,2,2) non-branching
+> (515,2,2) branching
+248d221
+< (536,1,2) branching
+250d222
+< (546,1,2) non-branching
+252,253c224
+< (547,1,2) non-branching
+< (548,1,2) branching
+---
+> (547,2,2) branching
+257,259d227
+< (554,1,2) non-branching
+< (555,1,2) branching
+< (558,1,2) non-branching
+261d228
+< (559,1,2) non-branching
+263,264c230
+< (560,1,2) non-branching
+< (561,1,2) branching
+---
+> (560,2,2) branching
+267d232
+< (567,1,2) branching
+269a235
+> (571,2,2) branching
+272d237
+< (578,1,2) branching
+276,278d240
+< (584,1,2) non-branching
+< (585,1,2) branching
+< (588,1,2) non-branching
+280d241
+< (589,1,2) non-branching
+282,283c243
+< (590,1,2) non-branching
+< (591,1,2) branching
+---
+> (590,2,2) branching
+284a245
+> (598,2,2) branching
+294d254
+< (617,1,2) branching
+297,298c257,259
+< (627,1,2) non-branching
+< (628,1,2) branching
+---
+> (627,2,2) branching
+> (631,2,2) non-branching
+> (632,2,2) branching
+301c262
+< (645,1,2) non-branching
+---
+> (643,3,2) branching
+303,305c264,268
+< (646,1,2) non-branching
+< (647,1,2) branching
+< (650,1,2) branching
+---
+> (646,2,2) non-branching
+> (647,2,2) non-branching
+> (647,3,2) non-branching
+> (648,2,2) branching
+> (648,3,2) branching
+308,310c271,275
+< (655,1,2) branching
+< (658,1,2) non-branching
+< (659,1,2) branching
+---
+> (653,2,2) branching
+> (655,2,2) non-branching
+> (656,2,2) non-branching
+> (657,2,2) non-branching
+> (658,2,2) branching
+311a277
+> (664,4,2) branching
+315,316c281,283
+< (671,1,2) non-branching
+< (672,1,2) branching
+---
+> (669,2,2) non-branching
+> (670,2,2) non-branching
+> (671,2,2) branching
+321d287
+< (680,2,2) branching
+324a291
+> (687,2,2) branching
+326,327c293,295
+< (694,1,2) non-branching
+< (695,1,2) branching
+---
+> (692,2,2) non-branching
+> (693,2,2) non-branching
+> (694,2,2) branching
+329c297
+< (703,1,2) branching
+---
+> (701,2,2) branching
+330a299
+> (706,5,2) branching
+332c301
+< (715,1,2) branching
+---
+> (713,2,2) branching
+335a305,306
+> (726,2,2) non-branching
+> (727,2,2) branching
+344a316
+> (748,2,2) branching
+346c318
+< (750,1,2) branching
+---
+> (751,2,2) branching
+348,349c320,321
+< (758,1,2) non-branching
+< (759,1,2) branching
+---
+> (758,2,2) branching
+> (758,6,2) branching
+352a325,326
+> (763,2,2) non-branching
+> (764,2,2) branching
+355a330
+> (771,2,2) branching
+361,364c336,340
+< (797,1,2) branching
+< (801,1,2) non-branching
+< (802,1,2) branching
+< (806,1,2) branching
+---
+> (796,4,2) branching
+> (797,5,2) non-branching
+> (798,5,2) branching
+> (801,2,2) branching
+> (807,2,2) branching
+366,368c342,344
+< (812,1,2) non-branching
+< (813,1,2) branching
+< (816,1,2) non-branching
+---
+> (812,3,2) non-branching
+> (813,3,2) non-branching
+> (814,3,2) branching
+371c347
+< (817,1,2) non-branching
+---
+> (817,2,2) branching
+373d348
+< (818,1,2) branching
+375d349
+< (823,1,2) non-branching
+377d350
+< (824,1,2) non-branching
+379,382c352,353
+< (825,1,2) non-branching
+< (826,1,2) branching
+< (831,1,2) non-branching
+< (832,1,2) branching
+---
+> (825,2,2) branching
+> (831,2,2) branching
+384c355
+< (843,1,2) non-branching
+---
+> (841,3,2) branching
+386,387c357
+< (844,1,2) non-branching
+< (845,1,2) branching
+---
+> (844,2,2) branching
+389a360
+> (852,3,2) branching
+391d361
+< (855,1,2) branching
+393d362
+< (862,1,2) non-branching
+395,396c364,365
+< (863,1,2) non-branching
+< (864,1,2) branching
+---
+> (863,2,2) branching
+> (865,3,2) branching
+400d368
+< (878,1,2) branching
+403c371
+< (887,1,2) branching
+---
+> (888,4,2) branching
+408c376
+< (898,1,2) branching
+---
+> (898,6,2) branching
+413a382,383
+> (916,2,2) branching
+> (918,5,2) branching
+417c387
+< (929,1,2) branching
+---
+> (930,2,2) branching
+426c396
+< (946,2,2) non-branching
+---
+> (946,3,2) branching
+428d397
+< (947,2,2) branching
+431,433c400,401
+< (950,3,2) branching
+< (951,1,2) branching
+< (954,1,2) branching
+---
+> (951,2,2) non-branching
+> (952,2,2) branching
+434a403
+> (963,4,2) branching
+437d405
+< (973,1,2) branching
+458,459c426
+< (1010,1,2) non-branching
+< (1011,1,2) branching
+---
+> (1010,2,2) branching
+464,465c431
+< (1024,1,2) branching
+< (1032,1,2) branching
+---
+> (1029,3,2) branching
+466a433
+> (1036,2,2) branching
+468,469d434
+< (1043,1,2) non-branching
+< (1044,1,2) branching
+473c438
+< (1054,1,2) branching
+---
+> (1055,5,2) branching
+483d447
+< (1077,1,2) branching
+492a457,459
+> (1103,2,2) non-branching
+> (1104,2,2) non-branching
+> (1105,2,2) branching
+493a461
+> (1111,2,2) non-branching
+495c463,467
+< (1116,3,2) branching
+---
+> (1112,2,2) non-branching
+> (1112,4,2) branching
+> (1113,2,2) non-branching
+> (1114,2,2) non-branching
+> (1115,2,2) branching
+497d468
+< (1124,1,2) branching
+500a472
+> (1128,3,2) branching
+503,504c475,476
+< (1137,1,2) non-branching
+< (1138,1,2) branching
+---
+> (1136,2,2) non-branching
+> (1137,2,2) branching
+507a480
+> (1144,3,2) branching
+509c482
+< (1149,1,2) branching
+---
+> (1150,2,2) branching
+511d483
+< (1153,2,2) branching
+514d485
+< (1157,1,2) branching
+518a490,491
+> (1166,2,2) non-branching
+> (1167,2,2) branching
+523,525c496
+< (1180,2,2) branching
+< (1184,1,2) non-branching
+< (1185,1,2) branching
+---
+> (1184,2,2) branching
+529d499
+< (1196,1,2) branching
+535,536c505
+< (1210,1,2) branching
+< (1214,1,2) non-branching
+---
+> (1211,5,2) branching
+538,539c507,508
+< (1215,1,2) non-branching
+< (1216,1,2) branching
+---
+> (1214,3,2) branching
+> (1217,2,2) branching
+547,548c516
+< (1236,1,2) non-branching
+< (1237,1,2) branching
+---
+> (1236,2,2) branching
+555d522
+< (1261,1,2) branching
+557a525
+> (1265,3,2) branching
+561,562c529,530
+< (1274,1,2) branching
+< (1285,1,2) branching
+---
+> (1278,2,2) branching
+> (1283,2,2) branching
+568c536
+< (1300,1,2) branching
+---
+> (1301,2,2) branching
+570,573c538,546
+< (1312,1,2) branching
+< (1317,1,2) non-branching
+< (1318,1,2) branching
+< (1321,1,2) branching
+---
+> (1310,2,2) branching
+> (1315,4,2) non-branching
+> (1316,2,2) non-branching
+> (1316,4,2) branching
+> (1317,2,2) non-branching
+> (1318,2,2) non-branching
+> (1318,3,2) non-branching
+> (1319,2,2) branching
+> (1319,3,2) branching
+578,580c551,553
+< (1331,1,2) branching
+< (1335,1,2) non-branching
+< (1336,1,2) branching
+---
+> (1329,2,2) branching
+> (1335,2,2) branching
+> (1343,2,2) branching
+583d555
+< (1356,1,2) branching
+585d556
+< (1362,1,2) branching
+587,588d557
+< (1367,4,2) branching
+< (1369,1,2) branching
+590,594c559
+< (1373,1,2) non-branching
+< (1374,1,2) branching
+< (1377,1,2) non-branching
+< (1378,1,2) branching
+< (1386,1,2) branching
+---
+> (1377,2,2) branching
+596,597c561
+< (1392,1,2) non-branching
+< (1393,1,2) branching
+---
+> (1392,2,2) branching
+604d567
+< (1408,1,2) branching
+606c569
+< (1416,1,2) branching
+---
+> (1414,2,2) branching
+608c571
+< (1423,1,2) branching
+---
+> (1421,2,2) branching
+611,612c574,576
+< (1435,1,2) non-branching
+< (1436,1,2) branching
+---
+> (1433,2,2) non-branching
+> (1434,2,2) non-branching
+> (1435,2,2) branching
+614a579,580
+> (1442,2,2) branching
+> (1444,8,2) branching
+617a584
+> (1450,2,2) branching
+627d593
+< (1464,1,2) branching
+629,630c595,596
+< (1470,1,2) non-branching
+< (1471,1,2) branching
+---
+> (1470,2,2) branching
+> (1471,4,2) branching
+634d599
+< (1484,1,2) non-branching
+636,637c601
+< (1485,1,2) non-branching
+< (1486,1,2) branching
+---
+> (1485,2,2) branching
+640d603
+< (1492,1,2) branching
+642d604
+< (1496,5,2) branching
+652,654d613
+< (1511,1,2) branching
+< (1514,3,2) non-branching
+< (1515,3,2) branching
+658c617
+< (1523,1,2) branching
+---
+> (1524,3,2) branching
+662c621
+< (1537,1,2) branching
+---
+> (1535,2,2) branching
+664,665d622
+< (1543,1,2) branching
+< (1547,1,2) branching
+669d625
+< (1560,1,2) branching
+672d627
+< (1567,1,2) non-branching
+674c629
+< (1568,1,2) non-branching
+---
+> (1568,2,2) non-branching
+676c631
+< (1569,1,2) branching
+---
+> (1569,2,2) non-branching
+677a633
+> (1570,2,2) non-branching
+679,680c635,638
+< (1572,1,2) non-branching
+< (1573,1,2) branching
+---
+> (1571,2,2) non-branching
+> (1571,4,2) branching
+> (1572,2,2) non-branching
+> (1573,2,2) non-branching
+682,683c640
+< (1576,1,2) branching
+< (1583,1,2) non-branching
+---
+> (1574,2,2) branching
+685,686c642
+< (1584,1,2) non-branching
+< (1585,1,2) branching
+---
+> (1584,2,2) branching
+689a646
+> (1590,4,2) branching
+691d647
+< (1594,1,2) branching
+696d651
+< (1600,4,2) branching
+719c674
+< (1648,1,2) branching
+---
+> (1646,2,2) branching
+724a680
+> (1663,3,2) branching
+727,728d682
+< (1674,2,2) non-branching
+< (1675,2,2) branching
+731c685,686
+< (1684,3,2) branching
+---
+> (1683,2,2) branching
+> (1685,6,2) branching
+740a696
+> (1713,2,2) branching
+742d697
+< (1721,1,2) branching
+744d698
+< (1727,1,2) branching
+746c700
+< (1732,1,2) branching
+---
+> (1733,2,2) branching
+750d703
+< (1742,1,2) branching
+753d705
+< (1751,1,2) non-branching
+755,756c707
+< (1752,1,2) non-branching
+< (1753,1,2) branching
+---
+> (1752,2,2) branching
+761,762c712
+< (1767,1,2) non-branching
+< (1768,1,2) branching
+---
+> (1767,2,2) branching
+769,771c719,720
+< (1789,1,2) non-branching
+< (1790,1,2) branching
+< (1791,3,2) branching
+---
+> (1789,2,2) branching
+> (1790,4,2) branching
+772a722,724
+> (1792,6,2) non-branching
+> (1793,6,2) non-branching
+> (1794,6,2) branching
+779a732
+> (1802,3,2) branching
+781,782c734,736
+< (1807,1,2) branching
+< (1812,1,2) branching
+---
+> (1804,5,2) non-branching
+> (1805,5,2) branching
+> (1812,4,2) branching
+789,790c743
+< (1829,1,2) non-branching
+< (1830,1,2) branching
+---
+> (1831,2,2) branching
+792,793d744
+< (1836,1,2) branching
+< (1841,1,2) non-branching
+795,796c746
+< (1842,1,2) non-branching
+< (1843,1,2) branching
+---
+> (1842,2,2) branching
+801a752
+> (1850,2,2) branching
+806c757
+< (1864,1,2) branching
+---
+> (1865,2,2) branching
+810c761
+< (1874,1,2) branching
+---
+> (1877,2,2) branching
+812c763
+< (1879,1,2) branching
+---
+> (1880,2,2) branching
+815,816c766
+< (1888,1,2) non-branching
+< (1889,1,2) branching
+---
+> (1894,2,2) branching
+818d767
+< (1896,1,2) branching
+819a769
+> (1899,5,2) branching
+821d770
+< (1904,1,2) branching
+823,828c772,774
+< (1913,1,2) non-branching
+< (1914,1,2) branching
+< (1922,1,2) branching
+< (1926,1,2) branching
+< (1931,1,2) non-branching
+< (1932,1,2) branching
+---
+> (1915,2,2) branching
+> (1930,2,2) non-branching
+> (1931,2,2) branching
+833,836c779,780
+< (1952,1,2) non-branching
+< (1953,1,2) branching
+< (1955,3,2) branching
+< (1961,1,2) branching
+---
+> (1954,2,2) branching
+> (1959,2,2) branching
+837a782
+> (1967,2,2) branching
+842c787
+< (1977,1,2) branching
+---
+> (1975,2,2) branching
+843a789
+> (1982,6,2) branching
+845a792
+> (1991,3,2) branching
+849,852c796,797
+< (2010,1,2) branching
+< (2012,3,2) non-branching
+< (2013,3,2) non-branching
+< (2014,3,2) branching
+---
+> (2003,2,2) non-branching
+> (2004,2,2) branching
+855,857c800
+< (2026,1,2) non-branching
+< (2027,1,2) branching
+< (2036,1,2) branching
+---
+> (2026,2,2) branching
+861d803
+< (2047,1,2) branching
+868a811,812
+> (2066,2,2) non-branching
+> (2067,2,2) branching
+871c815
+< (2078,1,2) branching
+---
+> (2076,2,2) branching
+873a818
+> (2085,2,2) branching
+875c820,822
+< (2087,1,2) branching
+---
+> (2086,3,2) non-branching
+> (2087,3,2) branching
+> (2088,2,2) branching
+884c831
+< (2111,1,2) branching
+---
+> (2109,2,2) branching
+898d844
+< (2129,1,2) branching
+913a860,862
+> (2174,2,2) non-branching
+> (2175,2,2) branching
+> (2177,4,2) branching
+917c866
+< (2192,1,2) branching
+---
+> (2190,2,2) branching
+920d868
+< (2201,1,2) branching
+921a870,871
+> (2204,2,2) non-branching
+> (2205,2,2) branching
+927c877
+< (2226,1,2) branching
+---
+> (2227,3,2) branching
+929d878
+< (2230,1,2) branching
+933c882
+< (2238,1,2) branching
+---
+> (2243,2,2) branching
+936d884
+< (2252,1,2) branching
+946a895,896
+> (2267,5,2) non-branching
+> (2268,5,2) branching
+958a909
+> (2274,5,2) non-branching
+962a914
+> (2275,5,2) branching
+971a924
+> (2280,5,2) non-branching
+974a928
+> (2281,5,2) branching
+983a938
+> (2286,5,2) non-branching
+986a942
+> (2287,5,2) branching
+995d950
+< (2297,1,2) branching
+998a954,955
+> (2313,5,2) non-branching
+> (2314,5,2) non-branching
+999a957
+> (2315,5,2) branching
+1002c960
+< (2324,1,2) branching
+---
+> (2325,5,2) branching
+1027,1029c985,986
+< (2361,2,2) branching
+< (2365,1,2) branching
+< (2376,1,2) branching
+---
+> (2370,2,2) non-branching
+> (2371,2,2) branching
+1031,1032c988,989
+< (2383,1,2) branching
+< (2389,1,2) branching
+---
+> (2384,2,2) branching
+> (2390,2,2) branching
+1035d991
+< (2398,2,2) branching
+1036a993,994
+> (2403,2,2) non-branching
+> (2404,2,2) branching
+1041,1042c999,1000
+< (2418,1,2) non-branching
+< (2419,1,2) branching
+---
+> (2418,2,2) branching
+> (2418,7,2) branching
+1045a1004,1005
+> (2431,4,2) non-branching
+> (2432,4,2) branching
+1050d1009
+< (2451,1,2) branching
+1052,1054c1011,1014
+< (2457,1,2) branching
+< (2460,1,2) non-branching
+< (2461,1,2) branching
+---
+> (2457,2,2) non-branching
+> (2458,2,2) non-branching
+> (2459,2,2) non-branching
+> (2460,2,2) branching
+1056a1017
+> (2465,2,2) branching
+1063c1024
+< (2506,1,2) branching
+---
+> (2504,2,2) branching
+1065a1027
+> (2518,2,2) branching
+1067,1068d1028
+< (2523,2,2) branching
+< (2527,1,2) branching
+1070a1031
+> (2532,2,2) branching
+1072d1032
+< (2534,1,2) branching
+1080,1084c1040,1045
+< (2549,1,2) non-branching
+< (2550,1,2) branching
+< (2553,1,2) branching
+< (2556,1,2) non-branching
+< (2557,1,2) branching
+---
+> (2548,2,2) non-branching
+> (2549,2,2) non-branching
+> (2550,2,2) non-branching
+> (2551,2,2) branching
+> (2556,2,2) branching
+> (2557,6,2) branching
+1087,1091c1048,1050
+< (2561,3,2) non-branching
+< (2562,3,2) non-branching
+< (2563,1,2) branching
+< (2563,3,2) branching
+< (2566,1,2) branching
+---
+> (2561,2,2) branching
+> (2563,2,2) non-branching
+> (2564,2,2) branching
+1094,1095c1053
+< (2577,1,2) non-branching
+< (2578,1,2) branching
+---
+> (2577,2,2) branching
+1097d1054
+< (2580,5,2) branching
+1110a1068,1070
+> (2625,2,2) branching
+> (2628,3,2) non-branching
+> (2629,3,2) branching
+1112d1071
+< (2635,1,2) branching
+1116c1075,1076
+< (2653,1,2) branching
+---
+> (2644,2,2) branching
+> (2651,2,2) branching
+1119d1078
+< (2659,1,2) branching
+1124,1126c1083,1085
+< (2677,1,2) branching
+< (2683,1,2) branching
+< (2684,3,2) branching
+---
+> (2678,2,2) branching
+> (2680,4,2) branching
+> (2683,4,2) branching
+1143a1103
+> (2697,4,2) branching
+1146d1105
+< (2704,1,2) branching
+1148d1106
+< (2706,2,2) branching
+1151a1110,1113
+> (2710,2,2) branching
+> (2710,7,2) branching
+> (2716,2,2) non-branching
+> (2717,2,2) branching
+1153,1156c1115,1116
+< (2729,1,2) non-branching
+< (2730,1,2) branching
+< (2734,1,2) branching
+< (2736,3,2) branching
+---
+> (2728,2,2) non-branching
+> (2729,2,2) branching
+1158d1117
+< (2747,1,2) branching
+1165d1123
+< (2770,1,2) branching
+1172d1129
+< (2787,3,2) branching
+1175c1132
+< (2798,1,2) branching
+---
+> (2801,2,2) branching
+1183a1141,1142
+> (2817,5,2) non-branching
+> (2818,5,2) branching
+1188d1146
+< (2823,1,2) branching
+1195d1152
+< (2831,1,2) branching
+1209d1165
+< (2845,1,2) branching
+1211a1168,1169
+> (2849,2,2) non-branching
+> (2850,2,2) branching
+1217,1218d1174
+< (2869,3,2) non-branching
+< (2870,3,2) branching
+1221c1177
+< (2876,1,2) branching
+---
+> (2874,2,2) branching
+1226,1227c1182
+< (2884,1,2) branching
+< (2889,1,2) branching
+---
+> (2890,2,2) branching
+1229,1231c1184,1188
+< (2895,1,2) branching
+< (2898,1,2) non-branching
+< (2899,1,2) branching
+---
+> (2895,2,2) non-branching
+> (2895,4,2) branching
+> (2896,2,2) non-branching
+> (2897,2,2) non-branching
+> (2898,2,2) branching
+1242a1200
+> (2936,2,2) branching
+1243a1202
+> (2946,3,2) branching
+1245c1204
+< (2951,1,2) branching
+---
+> (2952,3,2) branching
+1247d1205
+< (2955,1,2) branching
+1254d1211
+< (2982,1,2) non-branching
+1257d1213
+< (2983,1,2) non-branching
+1259d1214
+< (2984,1,2) non-branching
+1261,1262c1216
+< (2985,1,2) non-branching
+< (2986,1,2) branching
+---
+> (2985,2,2) branching
+1267,1268c1221
+< (3004,1,2) non-branching
+< (3005,1,2) branching
+---
+> (3004,2,2) branching
+1269a1223
+> (3021,3,2) branching
+1277c1231
+< (3042,1,2) branching
+---
+> (3044,4,2) branching
+1279a1234
+> (3051,3,2) branching
+1283c1238
+< (3066,1,2) branching
+---
+> (3066,2,2) non-branching
+1284a1240
+> (3067,2,2) non-branching
+1286,1287c1242,1244
+< (3069,1,2) non-branching
+< (3070,1,2) branching
+---
+> (3068,2,2) non-branching
+> (3069,2,2) non-branching
+> (3070,2,2) non-branching
+1288a1246
+> (3071,2,2) branching
+1291,1292c1249,1250
+< (3073,1,2) branching
+< (3076,1,2) branching
+---
+> (3073,2,2) non-branching
+> (3074,2,2) branching
+1294a1253
+> (3081,4,2) branching
+1296,1297c1255,1257
+< (3085,1,2) non-branching
+< (3086,1,2) branching
+---
+> (3083,2,2) non-branching
+> (3084,2,2) non-branching
+> (3085,2,2) branching
+1299,1300c1259,1262
+< (3093,1,2) branching
+< (3096,1,2) non-branching
+---
+> (3093,3,2) non-branching
+> (3093,5,2) non-branching
+> (3094,3,2) branching
+> (3094,5,2) branching
+1302,1305c1264
+< (3097,1,2) non-branching
+< (3098,1,2) branching
+< (3101,1,2) non-branching
+< (3102,1,2) branching
+---
+> (3101,2,2) branching
+1307,1309c1266
+< (3109,1,2) non-branching
+< (3110,1,2) branching
+< (3115,1,2) branching
+---
+> (3113,2,2) branching
+1326d1282
+< (3159,1,2) branching
+1330d1285
+< (3174,1,2) branching
+1333,1337c1288,1290
+< (3179,1,2) branching
+< (3183,3,2) non-branching
+< (3184,1,2) branching
+< (3184,3,2) branching
+< (3187,1,2) branching
+---
+> (3177,2,2) branching
+> (3184,2,2) non-branching
+> (3185,2,2) branching
+1340d1292
+< (3198,1,2) branching
+1348c1300,1301
+< (3227,1,2) branching
+---
+> (3225,2,2) branching
+> (3231,3,2) branching
+1351,1354c1304,1307
+< (3240,1,2) branching
+< (3245,3,2) non-branching
+< (3246,3,2) branching
+< (3252,1,2) branching
+---
+> (3239,3,2) non-branching
+> (3240,3,2) branching
+> (3241,2,2) branching
+> (3250,2,2) branching
+1355a1309
+> (3253,4,2) branching
+1357d1310
+< (3256,1,2) branching
+1372a1326,1327
+> (3302,3,2) non-branching
+> (3303,3,2) branching
+1373a1329
+> (3309,2,2) branching
+1376,1379d1331
+< (3320,1,2) branching
+< (3321,3,2) non-branching
+< (3322,3,2) non-branching
+< (3323,3,2) branching
+1385d1336
+< (3340,1,2) non-branching
+1388c1339
+< (3341,1,2) non-branching
+---
+> (3340,4,2) non-branching
+1391c1342
+< (3342,1,2) non-branching
+---
+> (3341,4,2) non-branching
+1393c1344
+< (3343,1,2) non-branching
+---
+> (3342,4,2) branching
+1395,1398c1346,1349
+< (3344,1,2) non-branching
+< (3345,1,2) branching
+< (3345,3,2) branching
+< (3348,1,2) branching
+---
+> (3344,2,2) non-branching
+> (3345,2,2) non-branching
+> (3346,2,2) branching
+> (3352,2,2) branching
+1404a1356
+> (3369,4,2) branching
+1417d1368
+< (3398,3,2) branching
+1421,1422d1371
+< (3416,2,2) non-branching
+< (3417,2,2) branching
+1429,1430d1377
+< (3435,4,2) non-branching
+< (3436,4,2) branching
+1448a1396,1397
+> (3474,3,2) non-branching
+> (3474,5,2) branching
+1449a1399
+> (3475,3,2) branching
+1455c1405
+< (3488,1,2) branching
+---
+> (3486,2,2) branching
+1459d1408
+< (3493,2,2) branching
+1462d1410
+< (3498,1,2) branching
+1464d1411
+< (3500,2,2) branching
+1470a1418,1419
+> (3509,3,2) non-branching
+> (3510,3,2) branching
+1477a1427,1428
+> (3536,2,2) non-branching
+> (3537,2,2) branching
+1480c1431
+< (3546,1,2) branching
+---
+> (3544,2,2) branching
+1481a1433,1434
+> (3551,4,2) non-branching
+> (3552,4,2) non-branching
+1482a1436
+> (3553,4,2) branching
+1485a1440
+> (3558,4,2) branching
+1487d1441
+< (3564,1,2) non-branching
+1489,1494c1443,1451
+< (3565,1,2) non-branching
+< (3566,1,2) branching
+< (3569,1,2) non-branching
+< (3570,1,2) branching
+< (3575,1,2) branching
+< (3581,1,2) branching
+---
+> (3573,2,2) branching
+> (3573,3,2) branching
+> (3575,3,2) non-branching
+> (3576,2,2) branching
+> (3576,3,2) non-branching
+> (3577,3,2) non-branching
+> (3578,3,2) branching
+> (3578,4,2) branching
+> (3580,6,2) branching
+1497,1498c1454,1456
+< (3587,1,2) non-branching
+< (3588,1,2) branching
+---
+> (3585,2,2) non-branching
+> (3586,2,2) non-branching
+> (3587,2,2) branching
+1508d1465
+< (3602,2,2) branching
+1523c1480
+< (3636,4,2) branching
+---
+> (3637,4,2) branching
+1525,1526c1482
+< (3643,1,2) non-branching
+< (3644,1,2) branching
+---
+> (3643,2,2) branching
+1529d1484
+< (3652,1,2) branching
+1532d1486
+< (3659,2,2) branching
+1542d1495
+< (3688,1,2) branching
+1545c1498
+< (3700,1,2) branching
+---
+> (3698,2,2) branching
+1549c1502
+< (3724,1,2) branching
+---
+> (3732,2,2) branching
+1552,1553c1505,1507
+< (3734,1,2) branching
+< (3737,1,2) branching
+---
+> (3734,2,2) non-branching
+> (3735,2,2) branching
+> (3738,4,2) branching
+1558d1511
+< (3754,1,2) non-branching
+1560,1561c1513
+< (3755,1,2) non-branching
+< (3756,1,2) branching
+---
+> (3754,3,2) branching
+1564c1516,1517
+< (3761,1,2) branching
+---
+> (3759,2,2) branching
+> (3759,3,2) branching
+1567c1520,1524
+< (3766,1,2) branching
+---
+> (3764,2,2) branching
+> (3764,3,2) branching
+> (3767,2,2) non-branching
+> (3768,2,2) non-branching
+> (3769,2,2) branching
+1570c1527
+< 1067 502
+---
+> 1045 481

@@ -35,6 +35,7 @@ class SuffixTree(object):
         self.root = Node(None)
         self.construct()
         self.table = [0]*len(self.string)
+        self.rtable = [0]*len(self.string)
 
     def __len__(self):
         return len(self.string)
@@ -223,20 +224,20 @@ class SuffixTree(object):
             if node.dr!=None:
                 # Collect the leaf list
                 l, r = self.getInts(node.dr)
-                LLs.append(self.getLL((l, r)))
+                LLs.append((self.getLL((l, r)), (l, r)))
             else:
                 # If leaf append index instead.
                 if node.index in LL:
-                    LLs.append([node.index])
+                    LLs.append(([node.index],(node.index, node.index)))
             node = node.right
 
-        return sorted(LLs, key=len, reverse=True)
+        return sorted(LLs, key = lambda x: len(x[0]), reverse=True)
 
     def crawl(self, node, bp, S, oD):
 
         # If reached None for some reason, then stop.
         if node==None: return 0
-        
+
         # If the node as no child, then it is a leaf, and should not be run.
         if node.left==None:
             # Checking whether there is a sibling (might not be a leaf)
@@ -252,19 +253,21 @@ class SuffixTree(object):
         LL = self.getLL(self.getInts(node.dr))
         LLs = self.collectLLs(node, LL) # First element is large and the remaining is small (LL'(v))
 
-        # Assigning 
-        large = LLs[0]
-        small = LLs[1:]
+        # Assigning
+        largel, larger = LLs[0][1]
+        small = [i[0] for i in LLs[1:]]
+
+        ld, rd = self.getInts(node.dr)
 
         # Looping through the entries in small
         for j in small:
             for i in j:
                 # Test 1
-                if i+D in LL:
+                if self.rtable[i+D] > ld and self.rtable[i+D] < rd:
                     if S[i]!=S[i+2*D]:
                         bp.add((i, D))
                 #Test 2
-                if i-D in large:
+                if self.rtable[i-D] > largel and self.rtable[i-D] < larger:
                     if S[i-D]!=S[i+D]:
                         bp.add((i-D, D))
 
@@ -274,8 +277,10 @@ class SuffixTree(object):
 
 
     def find_tandem_repeats(self, printing=True, output=False):
-        # Annotate the tree with depth first 
+        # Annotate the tree with depth first
         self.dfs(self.root, self.table, 0, 0)
+        for x in xrange(len(self.table)):
+            self.rtable[self.table[x]] = x
         bp = set()
         S = self.string
 
@@ -302,7 +307,7 @@ class SuffixTree(object):
         if printing==True: points = sorted(points, key = lambda x: x[0][1])
         if printing==True: points = sorted(points, key = lambda x: x[0][0])
 
-        if printing==True: 
+        if printing==True:
             for i, j in points:
                 print "(%i,%i,%i)" % i, j
 
@@ -359,6 +364,13 @@ def timeIt(code, iterations=4, toprint=True):
           (thetime, code, 10**iterations))
     return thetime
 
+def timeItonce(code):
+    from time import time
+    st = time()
+    exec code
+    thetime = time()-st
+    print("----- It took %.5f seconds to run: %s with %d iterations -----" % (thetime, code, 10**0))
+    return thetime
 
 def stringreader(filename):
     with open(filename) as f:
@@ -370,14 +382,32 @@ if __name__ == "__main__":
     file = stringreader(sys.argv[1])
     stree = SuffixTree(file)
 
-    print stree.search(sys.argv[2])
+    #print stree.search(sys.argv[2])
     thetable = [0] * len(stree.string)
     stree.dfs(stree.root, thetable, 0, 0)
     #print thetable
-    print stree.find_tandem_repeats()
+    count = stree.find_tandem_repeats()
+    print count[0], count[1]
     #print stree.table
     #scanallnodes(stree.root)
-    timeIt("stree.find_tandem_repeats(False)", 0)
+    avgtime = timeItonce("stree.find_tandem_repeats(False)")
+
+    #from math import log
+
+    #iterations = (len(sys.argv[1])+1)*log((len(sys.argv[1])+1))
+    #iterations2 =  (len(sys.argv[1])+1)**2
+
+    #print "Iterations: (n log n) ", iterations
+    #constant = avgtime/iterations
+    #print "The constant: (n log n) ", constant
+    #print "Expected time: (n log n) ", iterations*(10**-6)
+    #print "Iterations: (n^2) ", iterations2
+    #constant2 = avgtime/iterations2
+    #print "The constant: (n^2)", constant2
+    #print "Expected time: (n log n)", iterations*(10**-7)
+
+
+
 
 
 # Quick debugging tool.
