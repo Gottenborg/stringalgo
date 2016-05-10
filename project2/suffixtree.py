@@ -320,13 +320,6 @@ class SuffixTree(object):
             i -= 1
         return c
 
-    def left_rotate2(self, b, l, t):
-        c = 0
-        while b-(l*t)>0 and self.string[b]==self.string[b-(l*t)]:
-            c += 1
-            b -= 1
-        return c
-
 def scanallnodes(node):
     if node==None: return None
     print node
