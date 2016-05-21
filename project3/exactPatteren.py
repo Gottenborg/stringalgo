@@ -34,13 +34,20 @@ def KMPPrefix(pattern):
         prefixTable.append(i)
     return prefixTable
 
+def BAAlgorithm(text, pattern)
+    TextPrefixtable = prefixTable(text)
+    patternPrefiktable = prefixTable(pattern)
+
+
 
 
 def KMPMatching(text, pattern, prefixTable):
     prefixTable = prefixTable
     print prefixTable
     lengthOfText = len(text)
+    print lengthOfText
     lengthOfPattern = len(pattern)
+    print lengthOfPattern
     matchAt = []
     i=0
     j=0
@@ -49,7 +56,6 @@ def KMPMatching(text, pattern, prefixTable):
         while j < lengthOfPattern and text[i] == pattern[j]:
             i = i+1
             j = j+1
-            print "j %s" %j
         if j >= lengthOfPattern:
             print "Goal"
             matchAt.append(k)
@@ -57,15 +63,15 @@ def KMPMatching(text, pattern, prefixTable):
             k = i - prefixTable[j-1]
         elif k == i:
             i = i+1
-        k = i
+        k = i 
         print k
         if j > 0:
-            j = prefixTable[j-1]+1
+            j = prefixTable[j-1]
     print "matchAt %s" %(matchAt)
     return matchAt
 
 if __name__ == "__main__":
-    text = "cocacolaocaaawaaafcocacola"
+    text = sysargs([1])
     pattern = "cocacola"
     naive(text, pattern)
     pattern2 = "$" + pattern
