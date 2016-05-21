@@ -98,11 +98,11 @@ print naiveSearch("Hello there. Hello!", "Hello")
 print kmpSearch("Hello there. Hello!", "Hello")
 
 
-def GenerateString(n, a):
+def GenerateString(n, a, offset=0):
 
     import random
     
-    alphabet = [chr(65+i) for i in xrange(a)]
+    alphabet = [chr(65+i+offset) for i in xrange(a)]
 
     s = []
     
@@ -112,4 +112,4 @@ def GenerateString(n, a):
     return "".join(s)
 
 print GenerateString(50, 1)
-print GenerateString(10, 1)
+print GenerateString(5, 1, 1)
