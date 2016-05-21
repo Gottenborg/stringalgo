@@ -228,7 +228,7 @@ class SuffixTree(object):
             else:
                 # If leaf append index instead.
                 if node.index in LL:
-                    LLs.append(([node.index],(node.index, node.index)))
+                    LLs.append(([node.index], (node.index, node.index)))
             node = node.right
 
         return sorted(LLs, key = lambda x: len(x[0]), reverse=True)
@@ -263,11 +263,11 @@ class SuffixTree(object):
         for j in small:
             for i in j:
                 # Test 1
-                if self.rtable[i+D] > ld and self.rtable[i+D] < rd:
+                if self.rtable[i+D] >= ld and self.rtable[i+D] <= rd:
                     if S[i]!=S[i+2*D]:
                         bp.add((i, D))
                 #Test 2
-                if self.rtable[i-D] > largel and self.rtable[i-D] < larger:
+                if self.rtable[i-D] >= largel and self.rtable[i-D] <= larger:
                     if S[i-D]!=S[i+D]:
                         bp.add((i-D, D))
 
