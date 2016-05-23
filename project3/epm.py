@@ -60,44 +60,6 @@ def kmpSearch(x, p):
         
     return occ
 
-string = "abcabcabcabc"
-pattern = "abc"
-
-print "String:", string
-print "Pattern:", pattern
-
-print "Border Array search:", borderSearch(string, pattern)
-print "Naive search:", naiveSearch(string, pattern)
-print "Kmp search:", kmpSearch(string, pattern)
-
-
-def collectPatterns(l, x, p):
-    m = len(p)
-    r = []
-
-    for i in l:
-        r.append((i, x[i:i+m]))
-
-    return r
-
-string = "abababababababaababababababab"
-pattern = "abababababa"
-
-print "String:", string
-print "Pattern:", pattern
-
-bs = borderSearch(string, pattern)
-print "Border Array search:", collectPatterns(bs, string, pattern)
-ns = naiveSearch(string, pattern)
-print "Naive search:", collectPatterns(ns, string, pattern)
-ks = kmpSearch(string, pattern)
-print "Kmp search:", collectPatterns(ks, string, pattern)
-
-print borderSearch("Hello there. Hello!", "Hello")
-print naiveSearch("Hello there. Hello!", "Hello")
-print kmpSearch("Hello there. Hello!", "Hello")
-
-
 def GenerateString(n, a, offset=0):
 
     import random
@@ -111,5 +73,41 @@ def GenerateString(n, a, offset=0):
 
     return "".join(s)
 
-print GenerateString(50, 1)
-print GenerateString(5, 1, 1)
+if __name__ == '__main__':
+    string = "abcabcabcabc"
+    pattern = "abc"
+    
+    print "String:", string
+    print "Pattern:", pattern
+
+    print "Border Array search:", borderSearch(string, pattern)
+    print "Naive search:", naiveSearch(string, pattern)
+    print "Kmp search:", kmpSearch(string, pattern)
+
+
+    def collectPatterns(l, x, p):
+        m = len(p)
+        r = []
+        
+        for i in l:
+            r.append((i, x[i:i+m]))
+            
+        return r
+
+    string = "abababababababaababababababab"
+    pattern = "abababababa"
+
+    print "String:", string
+    print "Pattern:", pattern
+    
+    bs = borderSearch(string, pattern)
+    print "Border Array search:", collectPatterns(bs, string, pattern)
+    ns = naiveSearch(string, pattern)
+    print "Naive search:", collectPatterns(ns, string, pattern)
+    ks = kmpSearch(string, pattern)
+    print "Kmp search:", collectPatterns(ks, string, pattern)
+
+    print borderSearch("Hello there. Hello!", "Hello")
+    print naiveSearch("Hello there. Hello!", "Hello")
+    print kmpSearch("Hello there. Hello!", "Hello")
+
