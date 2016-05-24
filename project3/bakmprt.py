@@ -121,37 +121,64 @@ import bwt
 
 
 # ### Random running time:
-bAt = []
-kmpt = []
-bwtt = []
-naivet = []
+# bAt = []
+# kmpt = []
+# bwtt = []
+# naivet = []
 
-stri = GenerateString(10000, 4)
-patt = GenerateString(4, 4)
+# stri = GenerateString(10000, 4)
+# patt = GenerateString(4, 4)
 
 #timeIt("epm.borderSearch(stri, patt)", 0)
 #timeIt("epm.kmpSearch(stri, patt)", 0)
 #timeIt("bwt.bwt_search(stri, patt)", 0)
 #timeIt("epm.naiveSearch(stri, patt)", 0)
 
-for n in range(10, 10000, 40):
-    stri = GenerateString(n, 4)
-    patt = GenerateString(4, 4)
+# for n in range(10, 10000, 40):
+#     stri = GenerateString(n, 4)
+#     patt = GenerateString(4, 4)
 
-    bAt.append([n, timeIt("epm.borderSearch(stri, patt)", 0, False)])
-    kmpt.append([n, timeIt("epm.kmpSearch(stri, patt)", 0, False)])
-    Sarray = bwt.suffix_array(stri+"$")
-    bwtt.append([n, timeIt("bwt.bwt_search(stri+'$', patt, Sarray)", 0, False)])
-    naivet.append([n, timeIt("epm.naiveSearch(stri, patt)", 0, False)])
+#     bAt.append([n, timeIt("epm.borderSearch(stri, patt)", 0, False)])
+#     kmpt.append([n, timeIt("epm.kmpSearch(stri, patt)", 0, False)])
+#     Sarray = bwt.suffix_array(stri+"$")
+#     bwtt.append([n, timeIt("bwt.bwt_search(stri+'$', patt, Sarray)", 0, False)])
+#     naivet.append([n, timeIt("epm.naiveSearch(stri, patt)", 0, False)])
+
+# bAx = [x for [x, y] in bAt]
+# bAy = [y for [x, y] in bAt]
+# kmpy = [y for [x, y] in kmpt]
+# bwty = [y for [x, y] in bwtt]
+# naivey = [y for [x, y] in naivet]
+
+# plt.plot(bAx, bAy, label="Border Array")
+# plt.plot(bAx, kmpy, label="KMP")
+# plt.plot(bAx, bwty, label="BWT")
+# plt.plot(bAx, naivey, label="Naive")
+# plt.savefig('BWT.png', bbox_inches='tight')
+
+
+bAt = []
+kmpt = []
+
+for i in range(1, 2000):
+    stri = GenerateString(i*50, 2)
+    patt = GenerateString(i, 2)
+
+    bAt.append([i*50, timeIt("borderSearch(stri, patt)", 0, False)])
+    kmpt.append([i*50, timeIt("kmpSearch(stri, patt)", 0, False)])
 
 bAx = [x for [x, y] in bAt]
 bAy = [y for [x, y] in bAt]
 kmpy = [y for [x, y] in kmpt]
-bwty = [y for [x, y] in bwtt]
-naivey = [y for [x, y] in naivet]
 
 plt.plot(bAx, bAy, label="Border Array")
 plt.plot(bAx, kmpy, label="KMP")
-plt.plot(bAx, bwty, label="BWT")
-plt.plot(bAx, naivey, label="Naive")
-plt.savefig('BWT.png', bbox_inches='tight')
+plt.savefig('BothLinear.png', bbox_inches='tight')
+
+bAy = [y/(x+x/50) for [x, y] in bAt]
+kmpy = [y/(x+x/50) for [x, y] in kmpt]
+
+plt.figure()
+plt.plot(bAx, bAy, label="Border Array")
+plt.plot(bAx, kmpy, label="KMP")
+plt.savefig('BothLinearS.png', bbox_inches='tight')

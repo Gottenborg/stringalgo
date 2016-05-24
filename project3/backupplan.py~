@@ -1,0 +1,61 @@
+
+
+import epm
+import bwt
+
+text = open("walrus-and-carpenter.txt").read()
+
+print "Walrus and carpenter, Walrus"
+print "-"*30
+
+print "Border Array", epm.borderSearch(text, "Walrus")
+print "KMP", epm.kmpSearch(text, "Walrus")
+print "Naive", epm.naiveSearch(text, "Walrus")
+print "BWT", bwt.bwt_search(text, "Walrus")
+
+print 
+print "Walrus and carpenter, is"
+print "-"*30
+
+print "Border Array", epm.borderSearch(text, "is")
+print "KMP", epm.kmpSearch(text, "is")
+print "Naive", epm.naiveSearch(text, "is")
+print "BWT", bwt.bwt_search(text, "is")
+
+stri = epm.GenerateString(5000, 4)
+patt = epm.GenerateString(4, 4)
+
+print 
+print "Random text (5000), random pattern (4). Alphabet 4."
+print "-"*30
+
+print "Border Array", epm.borderSearch(stri, patt)
+print "KMP", epm.kmpSearch(stri, patt)
+print "Naive", epm.naiveSearch(stri, patt)
+print "BWT", bwt.bwt_search(stri, patt)
+
+
+stri = epm.GenerateString(30, 1)
+patt = epm.GenerateString(4, 1)
+
+print 
+print "All match (30), pattern (4). Alphabet 1."
+print "-"*30
+
+print "Border Array", epm.borderSearch(stri, patt)
+print "KMP", epm.kmpSearch(stri, patt)
+print "Naive", epm.naiveSearch(stri, patt)
+print "BWT", bwt.bwt_search(stri, patt)
+
+
+stri = epm.GenerateString(30, 1)
+patt = epm.GenerateString(4, 1, 1)
+
+print 
+print "No match (50), pattern (4). Alphabet 1 (2)."
+print "-"*30
+
+print "Border Array", epm.borderSearch(stri, patt)
+print "KMP", epm.kmpSearch(stri, patt)
+print "Naive", epm.naiveSearch(stri, patt)
+print "BWT", "Breaks"
